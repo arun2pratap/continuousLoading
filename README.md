@@ -40,7 +40,7 @@ continousLoading : {timeoutVar: timeoutVar, split:30, timeOut:150,  firstPageSiz
 				$("tr.jqgrow:even").addClass("evenRow");
 			},
 			continousLoading : {
-				timeoutVar: timeoutVar,
+				timeoutVar: window.timeoutVar,
 				split:30,
 				timeOut:150,
 				firstPageSize: 50
