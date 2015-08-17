@@ -39,7 +39,12 @@ continousLoading : {timeoutVar: timeoutVar, split:30, timeOut:150,  firstPageSiz
 				$("tr.jqgrow:odd").addClass("oddRow");
 				$("tr.jqgrow:even").addClass("evenRow");
 			},
-			continousLoading : {timeoutVar: timeoutVar, split:30, timeOut:150,  firstPageSize: 50}
+			continousLoading : {
+				timeoutVar: timeoutVar,
+				split:30,
+				timeOut:150,
+				firstPageSize: 50
+			}
 		});
 ```
 continousLoading {
