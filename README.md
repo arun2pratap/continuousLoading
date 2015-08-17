@@ -1,10 +1,10 @@
-contniousLoading
+continuousLoading
 =================
 
 A wraper to jqGrid plugin to provide continous Loading till all the data get's loaded.
 
 ## Demo
-download contniousLoading_1.0.0 and run default.html inside demo folder
+download continuousLoading_1.0.0 and run default.html inside demo folder
 
 ##How to use:
 Use it the same was as the jqGrid with an additional parameter to continous loading
