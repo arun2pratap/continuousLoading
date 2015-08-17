@@ -1,0 +1,30 @@
+{
+  "name": "contniousLoading",
+  "title": "contniousLoading",
+  "description": "A Light weight plugin to expand collapse HTML table also works on top of jqGrid.",
+  "keywords": [
+    "contniousLoading",
+    "contniousLoading",
+	"contniousLoading",
+	"loading",
+	"jqgridcontniousLoading"
+    ],
+  "version": "1.0.2",
+  "author": {
+    "name": "Arun Pratap",
+    "url": "https://github.com/arun2pratap/contniousLoading"
+  },
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://opensource.org/licenses/MIT"
+  }, {
+    "type": "GPLv2",
+    "url": "http://opensource.org/licenses/GPL-2.0"
+  }],
+  "homepage": "https://github.com/arun2pratap/contniousLoading",
+  "demo": "https://github.com/arun2pratap/contniousLoading",
+  "docs": "https://github.com/arun2pratap/contniousLoading",
+  "dependencies": {
+    "jquery": ">=1.4.x"
+  }
+}
