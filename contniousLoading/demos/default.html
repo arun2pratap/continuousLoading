@@ -1,38 +1,83 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-<link rel='stylesheet' type='text/css' href='../css/expandCollapse.css' />
+<link rel='stylesheet' type='text/css' href='../css/contniousLoading.css' />
+<script type='text/javascript' src='../contniousLoading/dummyJson.js'></script>
 <script type='text/javascript' src='../jquery/jquery-1.7.1.min.js'></script>
 <script type='text/javascript' src='../jquery/jquery-ui-1.8.17.custom.min.js'></script>
-<script type='text/javascript' src='../expandCollapse/expandCollapse.js'></script>
+<script type='text/javascript' src='../jquery/jquery.jqGrid.min.js'></script>
+<script type='text/javascript' src='../contniousLoading/contniousLoading.js'></script>
 <script type='text/javascript'>
+var collumNames = [ 'Item Code',
+        	        'Item Name',
+        			'Buyier',
+        			'Address' ];
+var collumModel = [ {
+	"name" : "itemCode",
+	'width' : 180,
+	align : 'left',
+	'formatter' : randomNumber,
+	"sortable" : false,
+	editable : false
+},{
+	"name" : "itemName",
+	'width' : 180,
+	align : 'left',
+	"sortable" : false,
+	editable : false
+},{
+	"name" : "buyier",
+	'width' : 180,
+	align : 'left',
+	'formatter' : randomNumber,
+	"sortable" : false,
+	editable : false
+},{
+	"name" : "address",
+	'width' : 180,
+	align : 'left',
+	"sortable" : false,
+	editable : false
+}];
+function randomNumber(cellValue, posData, rowData) {
+	var randomNum = Math.floor((Math.random() * 10000000) + 1);
+	return cellValue + "_" + randomNum;	
+}
+var timeoutVar;
 
 	$(document).ready(function() {
-		
-		$('#plainHTMLTable').expandCollapse(
-		{			
-			colNumber: 1,
-            evenRowClass: 'evenRow',
-            oddRowClass: 'oddRow',
-            isjqGrid: false,
-            isHTMLTable: true,
-			showEmptyCell: true
-		}
-		);
+		$('#plainHTMLTable').continousLoading({
+			datatype : "local",
+			data : jsonData,
+			height : ($(window).height() - 250),
+			width : ($(window).width() - 32),
+			gridview : true,
+			loadonce : true,
+			colNames : collumNames,
+			colModel : collumModel,
+			rowNum : 150000,			
+			viewrecords : true,
+			subGrid : false,
+			autoheight : true,
+			autowidth : false,
+			shrinkToFit : true,
+			cellsubmit : 'clientArray',
+			cellEdit : false,
+			jsonReader : {
+				root : "rows",
+				repeatitems : false
+			},
+			cmTemplate: { title: false },
+			loadComplete : function(data) {
+				$("tr.jqgrow:odd").addClass("oddRow");
+				$("tr.jqgrow:even").addClass("evenRow");
+				console.log('loadComplete');
+			},
+			continousLoading : {timeoutVar: timeoutVar, split:30, timeOut:150,  firstPageSize: 50}
+		});
 		
 	});
 
-	function expandCollapseAll(element,gridIdwithHash){	
-	var expandAll = 'Expand All';
-	var collapseAll = 'Collapse All';
-	if($(element).html().indexOf(expandAll) >= 0){
-		$(element).html(collapseAll);
-		$(gridIdwithHash).expandAll();
-	}else{
-		$(element).html(expandAll);
-		$(gridIdwithHash).collapseAll();
-	}
-}
 	
 </script>
 <style type='text/css'>
@@ -53,7 +98,7 @@
 	border-color: #999999;
 }
 #plainHTMLTable td {
-	background:#dcddc0 url('cell-grey.jpg');
+/* 	background:#dcddc0 url('cell-grey.jpg'); */
 	border-width: 1px;
 	padding: 14px;
 	border-style: solid;
@@ -62,65 +107,7 @@
 </style>
 </head>
 <body>
-				
-					<div id="expandCollapseAll" style="float:left;padding-top: 37px;padding-right: 15px;">												
-						<a id="expandCollapseBtn" onclick="expandCollapseAll(this,'#plainHTMLTable');" href='javascript:void(0);' >
-							Expand All
-						</a>
-					</div>
-				<br/><br/><br/>
-<table id="plainHTMLTable">
-<tr>
-	<th>Date </th><th>Location </th><th>Time </th><th>Item </th><th>Quantity</th>
-</tr>
-<tr>
-	<td>2013-09-01</td><td>Street 1</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-01</td><td>Street 2</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-01</td><td>Street 3</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-01</td><td>Street 4</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-01</td><td>Street 1</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-02</td><td>Street 2</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-02</td><td>Street 3</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-03</td><td>Street 4</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-03</td><td>Street 1</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-04</td><td>Street 2</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-04</td><td>Street 3</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-05</td><td>Street 4</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-05</td><td>Street 1</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-05</td><td>Street 2</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-06</td><td>Street 3</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-<tr>
-	<td>2013-09-06</td><td>Street 4</td><td>12:30</td><td>Veg Pizza</td><td>1</td>
-</tr>
-</table>
+<br/><br/><br/>
+<table id="plainHTMLTable"></table>
 </body>
 </html>
