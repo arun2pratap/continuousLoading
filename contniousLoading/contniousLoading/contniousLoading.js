@@ -1,16 +1,15 @@
 (function ( $ ) {
 	var settings;
-	var defaults = {
-			colNumber: 2,
-            evenRowClass: 'evenRow',
-            oddRowClass: 'oddRow',
-            isjqGrid: true,
-            isHTMLTable: false,
-			showEmptyCell: true
-	};
+	var continousLoading = {
+		timeoutVar: window.timeoutVar, // global variable to monitor the continious loading.
+		split:30,  // no of rows to be loaded in each time.
+		timeOut:50, // the time milliseconds between each split loaded.
+		firstPageSize: 250 // no of rows to be shown the first time.
+	}
 	
     $.fn.continousLoading = function( options ) {
-    	console.log((this));
+    	var settings = $.extend({}, continousLoading, options.continousLoading );
+    	options.continousLoading = settings;
     	var $gridTableObj = (this);
     		if(options.continousLoading.timeoutVar){clearTimeout(options.continousLoading.timeoutVar);}
     		var JSONData = options.data ;
